@@ -28,7 +28,7 @@ const datas = [
         description:
            [ "준비중...."],
         worktime:"20",
-        siteurl:"#"
+        siteurl:"https://megabox-kmh.netlify.app/"
     },
     {
         rank: 4,
