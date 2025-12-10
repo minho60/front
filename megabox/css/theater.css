@@ -102,23 +102,23 @@ i {
 
 /* 배경 이미지 */
 .special:nth-of-type(1) div:nth-of-type(4) {
-    background-image: url(images/specialtheater/bg_LED.png);
+    background-image: url(/images/specialtheater/bg_LED.png);
 }
 
 .special:nth-of-type(1) div:nth-of-type(5) {
-    background-image: url(images/specialtheater/bg_dolby_atmos.png);
+    background-image: url(/images/specialtheater/bg_dolby_atmos.png);
 }
 
 .special:nth-of-type(2) div:nth-of-type(3) {
-    background-image: url(images/specialtheater/bg_boutique.png);
+    background-image: url(/images/specialtheater/bg_boutique.png);
 }
 
 .special:nth-of-type(3) div:nth-of-type(1) {
-    background-image: url(images/specialtheater/bg_recliner.png);
+    background-image: url(/images/specialtheater/bg_recliner.png);
 }
 
 .special:nth-of-type(3) div:nth-of-type(2) {
-    background-image: url(images/specialtheater/bg_comfort.png);
+    background-image: url(/images/specialtheater/bg_comfort.png);
 }
 
 /* 그리드 아이템 크기 */
