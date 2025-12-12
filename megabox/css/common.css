@@ -114,8 +114,7 @@ common = reset+ header +footer
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-#header.active::before {
-    content:'';
+#header.active .subbar {
     position: absolute;
     width: 100%;
     height: 48px;
@@ -215,9 +214,13 @@ common = reset+ header +footer
     position: absolute;
     padding-top: 30px;
     transform: translateX(-25%);
-    display: none;
+    /* display: none; */
     /* 마지막 메뉴(혜택 메뉴)의 영역이 부족하여 줄 바꿈되는 현상 제거 */
     text-wrap: nowrap;
+}
+#gnb .sub.active{
+    display: grid;
+    grid-template-columns: repeat(3, auto) v ;
 }
 
 #gnb .sub a {
