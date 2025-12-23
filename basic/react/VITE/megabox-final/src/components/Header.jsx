@@ -1,6 +1,4 @@
 import '../styles/Header.css'
-import $ from "jquery";
-
 
 function Header({isHome}) {
     $(()=>{

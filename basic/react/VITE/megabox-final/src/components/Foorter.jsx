@@ -1,6 +1,4 @@
 import '../styles/Footer.css'
-import $ from "jquery";
-
 
 function Footer() {
   $(()=>{

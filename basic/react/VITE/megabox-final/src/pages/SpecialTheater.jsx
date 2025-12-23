@@ -1,7 +1,5 @@
-import Header from '../components/Header';
+import Header from './../components/Header';
 import '../styles/SpecialTheater.css';
-import $ from "jquery";
-
 
 function SpecialTheater() {
   // to the top button

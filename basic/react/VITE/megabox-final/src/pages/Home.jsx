@@ -1,6 +1,6 @@
-import Header from '../components/Header';
-import Card from '../components/Card';
-import './../styles/Home.css';
+import Header from './../components/Header';
+import Card from './../components/Card';
+import '../styles/Home.css';
 
 function Home() {
 

@@ -1,5 +1,5 @@
-import { datas } from '../data/boxOffice';
-import '..styles/card.css';
+import { datas } from './../data/boxOffice';
+import '../styles/Card.css';
 import $ from "jquery";
 window.$ = $;
 window.jQuery = $;
