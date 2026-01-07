@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼양식품</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
+</head>
+
+<body>
+    <div class="bxslider">
+        <div><img src="assets/20240116133051904008.jpg" alt="삼양 1" /></div>
+        <div><img src="assets/20231214092256522898.jpg" alt="삼양 2" /></div>
+        <div><img src="assets/20231214092418147899.jpg" alt="삼양 3" /></div>
+        <div><img src="assets/20231214092606468902.jpg" alt="삼양 4" /></div>
+        <div><img src="assets/20240116133051904008.jpg" alt="삼양 5" /></div>
+    </div>
+    <script>
+        $('.bxslider').bxSlider({
+            auto: true,
+            autoControls: true,
+            stopAutoOnClick: true,
+            pager: true,
+            slideWidth: 1020
+        });
+    </script>
+</body>
+
+</html>

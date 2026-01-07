@@ -61,6 +61,7 @@
     <script>
         let currentPage = 0;
         const totalPages = document.querySelectorAll(".page").length;
+        console.log('totalpages',totalPages);
         let isScrolling = false; // ⭐ 추가
 
         window.addEventListener("wheel", function (e) {
@@ -87,6 +88,7 @@
             }, 600); // smooth 시간보다 약간 크게
         }, { passive: false });
     </script>
+
 
 </body>
 
