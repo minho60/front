@@ -11,46 +11,80 @@
     <style>
         body{
             margin: 0;
+
         }
+
+        #section{
+            max-width: 1200px;
+            margin: 0 auto;
+
+        }
+        /* 색션 제목 서식 지정 */
+        #section h2{
+            padding: 50px 0;
+            font-size: 28px;
+            font-weight: normal;
+            color:#351f66 ;
+        }
+
         /* .bxslider의 부모 div */
         .bx-wrapper{
             background: none;
             border: none;
             box-shadow: none;
         }
+        /* 케로셀 아이템 호버 효과 */
+        .bxslider div a{
+            display: block;
+            height: 170px;
+            border-radius: 10px;
+            overflow:hidden;
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .bxslider div:hover img{
+            transform: translateY(-50%);
+        } 
+
         /* 좌우 버튼 공통 */
         .bx-wrapper .bx-controls-direction a {
+            background: none; /* 기존 버튼 숨기기 */
             width: 18px;
             height: 30px;
          }
          /* prev 버튼 */
          .bx-wrapper .bx-prev {
-            background: url("assets/btn_slide_prev_new.png") no-repeat center/contain !important;
-            left: calc(50% - 620px)
+            /* background: url("assets/btn_slide_prev_new.png") no-repeat center/contain !important; */
+            left: -50px;
 
          }
          /* next 버튼 */
          .bx-wrapper .bx-next{
-            background: url("assets/btn_slide_next_new.png") no-repeat center/contain !important;
-            right: calc(50% - 620px)
+            /* background: url("assets/btn_slide_next_new.png") no-repeat center/contain !important; */
+            right: -50px;
          }
 
     </style>
 </head>
 
 <body>
-    <div class="bxslider">
-        <div><img src="assets/bg-main-boutiq.png" alt="boutiq" /></div>
-        <div><img src="assets/bg-main-comfort.png" alt="comfort" /></div>
-        <div><img src="assets/bg-main-dolbyatmos.png" alt="dolbyatmos" /></div>
-        <div><img src="assets/bg-main-dolbycinema.png" alt="dolbycinema" /></div>
-        <div><img src="assets/bg-main-dva.png" alt="dv" /></div>
-        <div><img src="assets/bg-main-led.png" alt="led" /></div>
-        <!-- <div><img src="assets/bg-main-movie-rank.png" alt="-movie-rank" /></div> -->
-        <div><img src="assets/bg-main-mx4d.png" alt="mx4d" /></div>
-        <div><img src="assets/bg-main-private.png" alt="private" /></div>
-        <div><img src="assets/bg-main-recliner.png" alt="recliner" /></div>
-        <div><img src="assets/bg-main-suite.png" alt="suite" /></div>
+    <div id="section">
+        <div class="inner">
+            <h2>메가박스 안내</h2>
+            <div class="bxslider">
+                <div><a href=""><img src="assets/bg-main-boutiq.png" alt="boutiq" /></a></div>
+                <div><a href=""><img src="assets/bg-main-comfort.png" alt="comfort" /></a></div>
+                <div><a href=""><img src="assets/bg-main-dolbyatmos.png" alt="dolbyatmos" /></a></div>
+                <div><a href=""><img src="assets/bg-main-dolbycinema.png" alt="dolbycinema" /></a></div>
+                <div><a href=""><img src="assets/bg-main-dva.png" alt="dv" /></a></div>
+                <div><a href=""><img src="assets/bg-main-led.png" alt="led" /></a></div>
+                <!-- <div><img src="assets/bg-main-movie-rank.png" alt="-movie-rank" /></div> -->
+                <div><a href=""><img src="assets/bg-main-mx4d.png" alt="mx4d" /></a></div>
+                <div><a href=""><img src="assets/bg-main-private.png" alt="private" /></a></div>
+                <div><a href=""><img src="assets/bg-main-recliner.png" alt="recliner" /></a></div>
+                <div><a href=""><img src="assets/bg-main-suite.png" alt="suite" /></a></div>
+        </div>
+    </div>
 
     </div>
     <script>
@@ -64,7 +98,10 @@
             minSlides:6, // 기본값 1, 반응형
             maxSlides:6, //  기본값 1, 반응형
             moveSlides:1, // 기본값 0, 아이템 이동 개수
-            slideMargin:16 // 아이템 사이 여백
+            slideMargin:16, // 기본값0, 아이템 사이 여백
+
+            prevText:'<img src= "assets/btn_slide_prev_new.png" alt="이전버튼">',
+            nextText:'<img src= "assets/btn_slide_next_new.png" alt="이전버튼">',
 
         });
     </script>
