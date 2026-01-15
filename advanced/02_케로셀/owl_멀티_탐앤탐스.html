@@ -9,45 +9,127 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
     <title>탐앤탐스</title>
+    <style>
+
+        .owl-carousel{
+            max-width: 1248px;
+            margin: 0 auto;
+        }
+        .owl-carousel .item{
+            text-align: center;
+        }
+        .owl-carousel .item img{
+            border-radius: 20px;
+        }
+        /* div.owl-carousel
+            > div.owl-stage-outer
+                > div.owl-stage
+                    > div.owl-item
+                        > div.item
+        */
+        .owl-carousel .owl-stage-outer{
+            padding-top: 30px;/* 이미지의 상단 outline잘림을 보이게  */
+        }
+        .owl-carousel .item.center img{
+            outline:8px solid #ddd;
+            box-shadow: 0 0 0 12px rgba(0,0,0,0.1);
+        }
+        .owl-carousel .owl-nav{
+            position: absolute;
+            /* 
+            이미지+텍스트의 전체 높이(418)- 이미지 높이(352) -패딩(30)=36
+
+            이미지를 기준으로 수직 중앙배치해야하기 떄문
+
+            */
+            top:calc(50% - 36px);
+            transform: translateY(-50%);
+            width: 100%;
+            background: red;
+        }
+        .owl-carousel .owl-nav button{
+            position: absolute;
+            transform: translateY(-50%);
+            width: 64px;
+            height: 64px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 32px !important;
+        }
+        .owl-carousel .owl-nav button:hover{
+            background: #ccc;
+        }
+        .owl-carousel .owl-nav button .owl-prev{
+          left: -40px;
+          background: red;
+        }
+        .owl-carousel .owl-nav button .owl-next{
+           right: -40px;
+            background: red;
+        }
+        .inner{
+            text-align: center;
+        }
+        .inner h2{
+            margin: 30px;
+        }
+    
+    </style>
 </head>
 
 <body>
-<div class="owl-carousel owl-theme">
-    <div class="item"><img src="assets/탐앤탐스/1729499871291_[2_pëg.jpg" alt="프레츨"><h4>페퍼로니 플레인 프레츨</h4></div>
-    <div class="item"><img src="assets/탐앤탐스/1756947181355_[í_p°g.jpg" alt="탐의보감"><h4>탐의보감</h4></div>
-    <div class="item"><img src="assets/탐앤탐스/mellow3.jpg" alt="차"><h4>Golden Mellow Choux</h4></div>
-    <div class="item"><img src="assets/탐앤탐스/1764219255005_[2_p_g.jpg" alt="차"><h4>Sweat Tea Holiday</h4></div>
-    <div class="item"><img src="assets/탐앤탐스/1764219319884_[2_p´g.jpg" alt="크로와상"><h4>크로와상 &amp; 크로와상 샌드위치</h4></div>
-
+<div class="section">
+    <div class="inner">
+        <h2><img src="assets/탐앤탐스//section_tit1-a8019553.png" alt=""></h2>
+        <div class="owl-carousel owl-theme">
+            <div class="item"><img src="assets/탐앤탐스/1729499871291_[2_pëg.jpg" alt="프레츨"><h4>페퍼로니 플레인 프레츨</h4></div>
+            <div class="item"><img src="assets/탐앤탐스/1756947181355_[í_p°g.jpg" alt="탐의보감"><h4>탐의보감</h4></div>
+            <div class="item"><img src="assets/탐앤탐스/mellow3.jpg" alt="차"><h4>Golden Mellow Choux</h4></div>
+            <div class="item"><img src="assets/탐앤탐스/1764219255005_[2_p_g.jpg" alt="차"><h4>Sweat Tea Holiday</h4></div>
+            <div class="item"><img src="assets/탐앤탐스/1764219319884_[2_p´g.jpg" alt="크로와상"><h4>크로와상 &amp; 크로와상 샌드위치</h4></div>
+        </div>
+    </div>
 </div>
-
+<!-- 좌우버튼 
+    div.owl-carousel
+        >div.owl-nav
+            >button.owl-prev
+            >button.owl-next
+-->
 <script>
-    $('.owl-carousel').owlCarousel({
-    stagePadding: 56, // 기본값0, 
-    slideTransition:'easeOutBounce',
-    loop:true,
-    autoplay:true,
-    autoplayTimeOut: 5000,
-    margin:16, //기본값 0, 아이템 오른쪽 여백
-    center:true, //기본값 false, 가운데 아이템 활성화
-    nav:true, //기본값 false, 좌우 버튼
-    navText:[
-       '<img src= "assets/btn_slide_prev_new.png" alt="이전버튼">',
-       '<img src= "assets/btn_slide_next_new.png" alt="이전버튼">',
-    ],
-    dots: false, //기본값 true, 인디케이터
-    responsive:{
-        0:{
-            items:1 //0 이상 600미만
-        },
-        600:{
-            items:3 //600 이상 1000미만
-        },
-        1000:{
-            items:5 //1000 이상 
-        }
-    }
-})
+      $('.owl-carousel').owlCarousel({
+            stagePadding: 56, // 기본값 0, 왼쪽/오른쪽 끝 패딩 만큼 아이템이 보이게
+            //slideTransition: 'cubic-bezier(0.7, -0.4, 0.4, 1.4)', 
+            // 기본값 '', CSS 전환 방식(linear, ease, ease-in, ease-out, ease-in-out).
+            // easeOutElastic: cubic-bezier(0.7, -0.4, 0.4, 1.4)
+            // easeOutBounce: cubic-bezier(0.175, 0.885, 0.32, 1.275)
+            autoplay: true, // 기본값 false
+            autoplayTimeout: 3000, // 기본값 5000(5초), Autoplay 간격
+            autoplayHoverPause: true, // 기본값 false, 호버 시 Autoplay 일시 정지
+            autoplaySpeed: 800, // 기본값 250
+            loop:true, // 기본값 false, 무한 반복
+            //rewind: false, // 기본값 true, Go backwards when the boundary has reached.
+            margin:16, // 기본값 0, 아이템의 오른쪽 여백
+            center: true, // 기본값 false, 가운데 아이템 활성화
+            nav:true, // 기본값 false, Show next/prev buttons.
+            navText: [
+                '<img src="assets/btn_slide_prev_new.png" alt="이전 버튼">',
+                '<img src="assets/btn_slide_next_new.png" alt="다음 버튼">'
+            ],
+            dots: false, // 기본값 true, Show dots navigation. -> 인디케이터
+            //mouseDrag: false, // 기본값 true, Mouse drag enabled.
+            //touchDrag: false, // 기본값 true, Touch drag enabled
+            responsive:{
+                0:{
+                    items:1 // 0 이상 600 미만
+                },
+                600:{
+                    items:3 // 기본값 3, 600 이상 1000 미만
+                },
+                1000:{
+                    items:3 // 1000 이상
+                }
+            }
+        })
 </script>
 </body>
 
