@@ -107,21 +107,16 @@
 
     <div class="weather-card">
         <div class="input-group">
-            <input type="text"
-                id="cityInput"
-                placeholder="도시명 (서울, 부산...)">
+            <input type="text" id="cityInput" placeholder="도시명 (서울, 부산...)">
             <button onclick="changeCity()">검색</button>
         </div>
 
         <h3 id="city">로딩 중...</h3>
         <div class="icon-box">
-            <img id="icon"
-                src=""
-                alt="날씨 아이콘">
+            <img id="icon" src="" alt="날씨 아이콘">
         </div>
         <div class="temp"><span id="temp">0</span>°C</div>
-        <div id="desc"
-            class="desc">날씨 정보</div>
+        <div id="desc" class="desc">날씨 정보</div>
 
         <div class="air-quality">
             미세먼지 상태: <span id="aqi">-</span>
@@ -129,56 +124,58 @@
     </div>
 
     <script>
+        const API_KEY = '0ea179e0504c295bebb8266dadcafa23';
         let currentCity = 'Seoul';
 
         // 핵심: 한글 지역명을 처리하여 날씨와 미세먼지를 가져오는 단일 함수
         async function updateWeather(city) {
             try {
-                const response = await fetch(
-                    `/.netlify/functions/weather?city=${encodeURIComponent(city)}`
-                );
+                // 1. 한글 여부 판별 및 쿼리 생성
+                const isKorean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(city);
+                const searchQuery = isKorean ? `${city},KR` : city;
 
-                const data = await response.json();
+                const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&appid=${API_KEY}&lang=kr&units=metric`;
 
-                const wData = data.weather;
-                const aData = data.air;
+                const wResponse = await fetch(weatherUrl);
+                const wData = await wResponse.json();
 
+                if (wData.cod !== 200) {
+                    alert("도시를 찾을 수 없습니다. (한글 또는 영문 도시명을 정확히 입력하세요)");
+                    return;
+                }
+
+                // 2. 화면 날씨 정보 업데이트
                 document.getElementById('city').innerText = wData.name;
                 document.getElementById('temp').innerText = wData.main.temp.toFixed(1);
                 document.getElementById('desc').innerText = wData.weather[0].description;
-                document.getElementById('icon').src =
-                    `https://openweathermap.org/img/wn/${wData.weather[0].icon}@4x.png`;
+                document.getElementById('icon').src = `https://openweathermap.org/img/wn/${wData.weather[0].icon}@4x.png`;
 
-                const aqi = aData.list[0].main.aqi;
-                const aqiText = ["", "좋음 😊", "보통 🙂", "민감군 주의 🤨", "나쁨 😷", "매우 나쁨 🚨"];
-                const aqiEl = document.getElementById('aqi');
+                // 3. 위도/경도를 사용해 미세먼지 업데이트
+                const { lat, lon } = wData.coord;
+                updateAirQuality(lat, lon);
 
-                aqiEl.innerText = aqiText[aqi];
-                aqiEl.className = aqi <= 2 ? "good" : "bad";
-
-            } catch (e) {
-                console.error("오류:", e);
+            } catch (error) {
+                console.error("데이터 호출 오류:", error);
             }
         }
 
+        async function updateAirQuality(lat, lon) {
+            try {
+                const airUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+                const aResponse = await fetch(airUrl);
+                const aData = await aResponse.json();
 
-        // async function updateAirQuality(lat, lon) {
-        //     try {
-        //         const airUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
-        //         const aResponse = await fetch(airUrl);
-        //         const aData = await aResponse.json();
+                const aqi = aData.list[0].main.aqi; // 1(좋음)~5(매우나쁨)
+                const aqiText = ["", "좋음 😊", "보통 🙂", "민감군 주의 🤨", "나쁨 😷", "매우 나쁨 🚨"];
+                const aqiClass = aqi <= 2 ? "good" : "bad";
 
-        //         const aqi = aData.list[0].main.aqi; // 1(좋음)~5(매우나쁨)
-        //         const aqiText = ["", "좋음 😊", "보통 🙂", "민감군 주의 🤨", "나쁨 😷", "매우 나쁨 🚨"];
-        //         const aqiClass = aqi <= 2 ? "good" : "bad";
-
-        //         const aqiElement = document.getElementById('aqi');
-        //         aqiElement.innerText = aqiText[aqi];
-        //         aqiElement.className = aqiClass;
-        //     } catch (e) {
-        //         document.getElementById('aqi').innerText = "정보 없음";
-        //     }
-        // }
+                const aqiElement = document.getElementById('aqi');
+                aqiElement.innerText = aqiText[aqi];
+                aqiElement.className = aqiClass;
+            } catch (e) {
+                document.getElementById('aqi').innerText = "정보 없음";
+            }
+        }
 
         // 검색 실행 함수
         function changeCity() {
